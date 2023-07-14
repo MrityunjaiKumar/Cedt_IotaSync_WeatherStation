@@ -69,7 +69,7 @@ void reconnect() {
     if (client.connect(mqtt_client_id, mqtt_client_username, mqtt_client_password)) {
       Serial.println("connected");
       // Subscribe
-      client.subscribe("Tank_node_sub");
+      client.subscribe("mjled");
     }
     else {
       Serial.print("failed, rc=");
@@ -80,13 +80,13 @@ void reconnect() {
     }
   }
 }
+  long now = millis();
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
 
-  long now = millis();
   if (now - lastMsg > 15000) {
 
     lastMsg = now;
