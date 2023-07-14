@@ -45,7 +45,7 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, broker_port);
   client.setCallback(callback);
-  bme_setup();
+  bm_setup();
 }
 
 void callback(char* topic, byte* message, unsigned int length) {
@@ -80,17 +80,17 @@ void reconnect() {
     }
   }
 }
-  long now = millis();
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
+  long now = millis();
 
   if (now - lastMsg > 15000) {
 
     lastMsg = now;
-    client.publish(mqtt_publish_topic, get_BME_payload().c_str());
+    client.publish(mqtt_publish_topic, get_BM_payload().c_str());
     // Serial.println(get_BME_payload());
   }
 }

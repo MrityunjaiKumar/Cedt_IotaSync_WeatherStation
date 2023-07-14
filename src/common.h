@@ -4,6 +4,6 @@
 void callback(char *topic, byte *message, unsigned int length);
 void reconnect();
 void setup_wifi();
-void bme_setup();
-String get_BME_payload();
+void bm_setup();
+String get_BM_payload();
 #endif //_COMMOM_H
